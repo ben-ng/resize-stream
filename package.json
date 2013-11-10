@@ -1,0 +1,20 @@
+{
+  "author": "Ben Ng <me@benng.me> (http://benng.me)",
+  "name": "resize-stream",
+  "version": "0.0.1",
+  "description": "Resize images with streams",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ben-ng/resize-stream.git"
+  },
+  "dependencies": {
+    "formidable": "1.0.x",
+    "jake": "0.7.x",
+    "gm": "1.13.x",
+    "temp": "0.6.x"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "0.10.x"
+  }
+}
