@@ -16,6 +16,9 @@
   "devDependencies": {
     "request": "2.27.x"
   },
+  "scripts": {
+    "test": "jake test --trace"
+  },
   "engines": {
     "node": "0.10.x"
   }
