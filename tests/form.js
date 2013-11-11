@@ -6,14 +6,8 @@ var rstream = require('..')
   , tests = {}
   , gm = require('gm')
   , im = gm.subClass({ imageMagick: true })
-  , clobber
+  , clobber = require('./fixtures/clobber')
   , fixtures = require('./fixtures');
-
-clobber = function (next) {
-  fs.unlink(fixtures.kitten.resized, function (err) {
-    next();
-  });
-};
 
 tests['resize kitten 50x50'] = function (next) {
   var opts

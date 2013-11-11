@@ -83,21 +83,29 @@ resizeStream = function (inStream, opts, cb) {
 
   im.resize(opts.width, opts.height, '^');
 
-  tmpFile = temp.path({suffix: opts.ext || '.jpg'});
+  temp.open({suffix: opts.ext || '.jpg'}, function (err, info) {
+    if(err)
+      return cb(err);
 
-  im.stream()
-    .pipe(fs.createWriteStream(tmpFile))
-    .on('close', function () {
-      fs.stat(tmpFile, function (err, stat) {
+      fs.close(info.fd, function (err) {
         if(err)
           return cb(err);
 
-        cb(null, fs.createReadStream(tmpFile), stat.size);
+        im.stream()
+          .pipe(fs.createWriteStream(info.path))
+          .on('close', function () {
+            fs.stat(info.path, function (err, stat) {
+              if(err)
+                return cb(err);
+
+              cb(null, fs.createReadStream(info.path), stat.size, info.path);
+            });
+          })
+          .on('error', function (err) {
+            cb(err);
+          });
       });
-    })
-    .on('error', function (err) {
-      cb(err);
-    });
+  });
 };
 
 /**
