@@ -1,6 +1,8 @@
 resize-stream
 =============
 
+[![Build Status](https://travis-ci.org/ben-ng/resize-stream.png?branch=master)](https://travis-ci.org/ben-ng/resize-stream)
+
 Resizing images can suck. This library hopes to make that better.
 
 **Depends on ImageMagick, so make sure you have that installed**
