@@ -13,22 +13,22 @@ var rstream = require('resize-stream');
 // From a file path
 rstream.resizeFile('cat.jpg'
   , {width: 50, height: 50}
-  , function (err, outStream, cLength) {
+  , function (err, outStream, contentLength) {
     // outStream is a readable stream
-    // cLength makes it easy to .pipe() to S3
+    // contentLength makes it easy to .pipe() to S3
   });
 
 // From a multipart form request
 rstream.resizeReq(req
   , {width: 50, height: 50}
-  , function (err, outStream, cLength) {
+  , function (err, outStream, contentLength) {
     // etc
   });
 
 // From a stream
 rstream.resizeStream(fs.createReadStream('cat.jpg')
   , {width: 50, height: 50}
-  , function (err, outStream, cLength) {
+  , function (err, outStream, contentLength) {
     // etc
   });
 ```
