@@ -12,7 +12,4 @@ var d = new jake.NpmPublishTask('resize-stream', function () {
   , 'package.json'
   , 'Readme.md'
     ]);
-  this.packageFiles.exclude([
-  ]);
-  this.publishCmd = 'fury push %filename';
 });
