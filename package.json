@@ -1,7 +1,7 @@
 {
   "author": "Ben Ng <me@benng.me> (http://benng.me)",
   "name": "resize-stream",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Resize images with streams",
   "repository": {
     "type": "git",
