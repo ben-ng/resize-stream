@@ -16,7 +16,6 @@ defaults = {
   width: 320
 , height: 320
 , autoOrient: true
-, crop: true
 };
 
 /**
@@ -80,7 +79,7 @@ resizeStream = function (inStream, opts, cb) {
   opts = JSON.parse(JSON.stringify(opts));
   opts.width = opts.width || defaults.width;
   opts.height = opts.height || defaults.height;
-  opts.fit = opts.fit !== false;
+  opts.fit = opts.fit === true;
   opts.crop = opts.crop !== false;
   opts.autoOrient = opts.autoOrient || defaults.autoOrient;
 

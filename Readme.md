@@ -36,13 +36,15 @@ rstream.resizeStream(fs.createReadStream('cat.jpg')
 Options
 -------
 
-The second parameter is always an optional options hash
+The second parameter is always an optional options hash. See the examples below for a visual guide.
 
- * `width`: The target width of the output image in pixels
- * `height`: The target height of the output image in pixels
- * `fit`: If `true`, will fit the input image inside the bounds of the output image. Defaults to `true`.
- * `crop`: If `true`, will ignore `fit` and crop the image instead of changing the aspect ratio. Defaults to `false`.
- * `autoOrient`: If `true`, will rotate the image using its EXIF data. Defaults to `true`.
+| Option Name | Default Value | Effect                                                             |
+|:-----------:|:-------------:|:------------------------------------------------------------------:|
+| width       | 320px         | The target width of the output image in pixels                     |
+| height      | 320px         | The target height of the output image in pixels                    |
+| fit         | `false`       | Fit the input image inside the bounds of the output image          |
+| crop        | `true`        | Crop the image instead of changing the aspect ratio or fitting     |
+| autoOrient  | `true`        | Rotate the image using its EXIF data                               |
 
 Fit and Crop Examples
 ---------------------
