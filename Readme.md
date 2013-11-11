@@ -34,7 +34,7 @@ rstream.resizeStream(fs.createReadStream('cat.jpg')
 ```
 
 Options
-_______
+-------
 
 The second parameter is always an optional options hash
 
@@ -47,9 +47,11 @@ The second parameter is always an optional options hash
 Fit and Crop Examples
 ---------------------
 
-Since these are hard to explain in words, here are some helpful images
+Since these are hard to explain in words, here are some visual examples.
 
+### 450x450 Original
 ![Original Image](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/kitten.jpg "Original Image")
+[Credit](https://pusheen.com)
 
 | Target Dimensions | Crop  | Fit   | Result                                                                                                                      | Output Dimensions|
 |:-----------------:|:-----:|:-----:|:---------------------------------------------------------------------------------------------------------------------------:|:----------------:|
