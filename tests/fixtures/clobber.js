@@ -4,7 +4,7 @@ var fs = require('fs')
 module.exports = function (next) {
   fs.unlink(fixtures.nocropnofit.resized, function (err) {
     fs.unlink(fixtures.nocropfit.resized, function (err) {
-      fs.unlink(fixtures.fit.resized, function (err) {
+      fs.unlink(fixtures.crop.resized, function (err) {
         next();
       });
     });
