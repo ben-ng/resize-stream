@@ -51,11 +51,11 @@ Since these are hard to explain in words, here are some helpful images
 
 ![Original Image](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/kitten.jpg "Original Image")
 
-| Crop  | Fit   | Result                                                                                                                     |
-|:-----:|:-----:|:--------------------------------------------------------------------------------------------------------------------------:|
-|`true` |Ignored|![Cropped](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.crop.jpg "Cropped Image")      |
-|`false`|`true` |![Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.nocrop.fit.jpg "Fit Image")        |
-|`false`|`false`|![Not Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.nocrop.nofit.jpg "No Fit Image")|
+| Target Dimensions | Crop  | Fit   | Result                                                                                                                      | Output Dimensions|
+|:-----------------:|:-----:|:-----:|:---------------------------------------------------------------------------------------------------------------------------:|:----------------:|
+| 200x400px         |`true` |Ignored|![Cropped](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.crop.jpg "Cropped Image")       | 200x400px        |
+| 200x400px         |`false`|`false`|![Not Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.nocrop.nofit.jpg "No Fit Image")| 200x400px        |
+| 200x400px         |`false`|`true` |![Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.nocrop.fit.jpg "Fit Image")         | 200x200px        |
 
 To-Do
 -----
