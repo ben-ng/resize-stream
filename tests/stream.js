@@ -5,30 +5,38 @@ var rstream = require('..')
   , gm = require('gm')
   , im = gm.subClass({ imageMagick: true })
   , clobber = require('./fixtures/clobber')
-  , fixtures = require('./fixtures');
+  , fixtures = require('./fixtures')
+  , createTest;
 
-tests['resize kitten 50x50'] = function (next) {
-  rstream.resizeStream(fs.createReadStream(fixtures.kitten.original)
-    , fixtures.kitten.size
-    , function (err, outStream, cLength) {
-      assert.ifError(err);
-      assert.notEqual(outStream, null);
-      assert.notEqual(cLength, null);
+createTest = function (fixture) {
+  tests['resize ' + fixture] = function (next) {
+    rstream.resizeStream(fs.createReadStream(fixtures[fixture].original)
+      , fixtures[fixture].size
+      , function (err, outStream, cLength) {
+        assert.ifError(err);
+        assert.notEqual(outStream, null);
+        assert.notEqual(cLength, null);
 
-      var ws = fs.createWriteStream(fixtures.kitten.resized);
+        var ws = fs.createWriteStream(fixtures[fixture].resized);
 
-      outStream.pipe(ws);
+        outStream.pipe(ws);
 
-      ws.on('close', function () {
-        im(fixtures.kitten.resized).size(function (err, fsize) {
-          assert.ifError(err);
-          assert.deepEqual(fixtures.kitten.size, fsize);
+        ws.on('close', function () {
+          im(fixtures[fixture].resized).size(function (err, fsize) {
+            assert.ifError(err);
+            assert.deepEqual(fsize.height, fixtures[fixture].expected.height);
+            assert.deepEqual(fsize.width, fixtures[fixture].expected.width);
 
-          next();
+            next();
+          });
         });
       });
-    });
+  };
 };
+
+createTest('nocropnofit');
+createTest('nocropfit');
+createTest('crop');
 
 tests['before'] = clobber;
 tests['after'] = clobber;

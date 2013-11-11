@@ -16,6 +16,7 @@ defaults = {
   width: 320
 , height: 320
 , autoOrient: true
+, crop: true
 };
 
 /**
@@ -76,12 +77,29 @@ resizeStream = function (inStream, opts, cb) {
     opts = {};
   }
 
+  opts = JSON.parse(JSON.stringify(opts));
+  opts.width = opts.width || defaults.width;
+  opts.height = opts.height || defaults.height;
+  opts.fit = opts.fit !== false;
+  opts.crop = opts.crop !== false;
+  opts.autoOrient = opts.autoOrient || defaults.autoOrient;
+
   im = imagemagick(inStream);
 
   if(opts.autoOrient)
     im.autoOrient();
 
-  im.resize(opts.width, opts.height, '^');
+  if(opts.crop) {
+    im.gravity('Center').resize(opts.width, opts.height, '^').crop(opts.width, opts.height, 0, 0);
+  }
+  else {
+    if(opts.fit) {
+      im.resize(opts.width, opts.height);
+    }
+    else {
+      im.resize(opts.width, opts.height, '!');
+    }
+  }
 
   temp.open({suffix: opts.ext || '.jpg'}, function (err, info) {
     if(err)
@@ -124,9 +142,6 @@ resizeFile = function (filePath, opts, cb) {
   }
 
   opts = JSON.parse(JSON.stringify(opts));
-  opts.width = opts.width || defaults.width;
-  opts.height = opts.height || defaults.height;
-  opts.autoOrient = opts.autoOrient || defaults.autoOrient;
   opts.ext = path.extname(filePath);
 
   resizeStream(fs.createReadStream(filePath), opts, cb);

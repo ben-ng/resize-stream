@@ -12,7 +12,7 @@ var rstream = require('resize-stream');
 
 // From a file path
 rstream.resizeFile('cat.jpg'
-  , {width: 50, height: 50}
+  , {width: 50, height: 50} // See options documentation for more
   , function (err, outStream, contentLength) {
     // outStream is a readable stream
     // contentLength makes it easy to .pipe() to S3
@@ -32,6 +32,30 @@ rstream.resizeStream(fs.createReadStream('cat.jpg')
     // etc
   });
 ```
+
+Options
+_______
+
+The second parameter is always an optional options hash
+
+ * `width`: The target width of the output image in pixels
+ * `height`: The target height of the output image in pixels
+ * `fit`: If `true`, will fit the input image inside the bounds of the output image. Defaults to `true`.
+ * `crop`: If `true`, will ignore `fit` and crop the image instead of changing the aspect ratio. Defaults to `false`.
+ * `autoOrient`: If `true`, will rotate the image using its EXIF data. Defaults to `true`.
+
+Fit and Crop Examples
+---------------------
+
+Since these are hard to explain in words, here are some helpful images
+
+![Original Image](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/kitten.jpg "Original Image")
+
+| Crop  | Fit   | Result                                                                                                                     |
+|:-----:|:-----:|:--------------------------------------------------------------------------------------------------------------------------:|
+|`true` |Ignored|![Cropped](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.crop.jpg "Cropped Image")      |
+|`false`|`true` |![Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.noocropfit.jpg "Fit Image")        |
+|`false`|`false`|![Not Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.nocropnofit.jpg "No Fit Image")|
 
 To-Do
 -----

@@ -9,24 +9,25 @@ var rstream = require('..')
   , clobber = require('./fixtures/clobber')
   , fixtures = require('./fixtures');
 
-tests['resize kitten 50x50'] = function (next) {
+tests['resize nocropnofit'] = function (next) {
   var opts
     , serv = http.createServer(function (req, resp) {
         rstream.resizeReq(req
-          , fixtures.kitten.size
+          , fixtures.nocropnofit.size
           , function (err, outStream, cLength) {
             assert.ifError(err);
             assert.notEqual(outStream, null);
             assert.notEqual(cLength, null);
 
-            var ws = fs.createWriteStream(fixtures.kitten.resized);
+            var ws = fs.createWriteStream(fixtures.nocropnofit.resized);
 
             outStream.pipe(ws);
 
             ws.on('close', function () {
-              im(fixtures.kitten.resized).size(function (err, fsize) {
+              im(fixtures.nocropnofit.resized).size(function (err, fsize) {
                 assert.ifError(err);
-                assert.deepEqual(fixtures.kitten.size, fsize);
+                assert.deepEqual(fsize.height, fixtures.nocropnofit.expected.height);
+                assert.deepEqual(fsize.width, fixtures.nocropnofit.expected.width);
 
                 resp.writeHead(200, {
                   'Content-Length': 2,
@@ -40,7 +41,7 @@ tests['resize kitten 50x50'] = function (next) {
 
   serv.listen(5000);
 
-  fs.readFile(fixtures.kitten.original, function (err, data) {
+  fs.readFile(fixtures.nocropnofit.original, function (err, data) {
     assert.ifError(err);
 
     opts = {
