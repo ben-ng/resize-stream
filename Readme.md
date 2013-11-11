@@ -54,7 +54,7 @@ Since these are hard to explain in words, here are some helpful images
 | Crop  | Fit   | Result                                                                                                                     |
 |:-----:|:-----:|:--------------------------------------------------------------------------------------------------------------------------:|
 |`true` |Ignored|![Cropped](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.crop.jpg "Cropped Image")      |
-|`false`|`true` |![Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.noocrop.fit.jpg "Fit Image")        |
+|`false`|`true` |![Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.nocrop.fit.jpg "Fit Image")        |
 |`false`|`false`|![Not Fit](https://raw.github.com/ben-ng/resize-stream/master/tests/fixtures/expected/kitten.nocrop.nofit.jpg "No Fit Image")|
 
 To-Do
