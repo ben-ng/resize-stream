@@ -19,7 +19,7 @@ rstream.resizeFile('cat.jpg'
   });
 
 // From a multipart form request
-rstream.resizeReq('cat.jpg'
+rstream.resizeReq(req
   , {width: 50, height: 50}
   , function (err, outStream, cLength) {
     // etc
@@ -39,7 +39,7 @@ To-Do
  * Finer control over the imagemagick commands
 
 License
-_______
+-------
 The MIT License (MIT)
 
 Copyright (c) 2013 Ben Ng

@@ -13,7 +13,9 @@
     "gm": "1.13.x",
     "temp": "0.6.x"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "request": "2.27.x"
+  },
   "engines": {
     "node": "0.10.x"
   }
